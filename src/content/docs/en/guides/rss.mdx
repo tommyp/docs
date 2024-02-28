@@ -190,6 +190,15 @@ export async function GET(context) {
 }
 ```
 
+`sanitize-html` does not allow images by default. To do so, you'll need to to pass a list of allowed tags with it included:
+
+```
+content: sanitizeHtml(parser.render(post.body), {
+  allowedTags: sanitizeHtml.defaults.allowedTags.concat(['img'])
+})
+```
+
+
 When using glob imports with Markdown, you may use the `compiledContent()` helper to retrieve the rendered HTML for sanitization. Note: this feature is **not** supported for MDX files.
 
 ```js title="src/pages/rss.xml.js" ins={2, 13}
